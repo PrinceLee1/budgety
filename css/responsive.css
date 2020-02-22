@@ -1,0 +1,201 @@
+/* =========================================
+                Mobile Menu
+============================================ */
+.navbar-toggler{
+    font-size: 35px;
+    color: #f41366;
+    margin-left: 70px;
+}
+
+.navbar-fixed-top.scrolled {
+    background: #28B9B5;
+    padding: 10px 0;
+    -webkit-box-shadow: 0 8px 6px -9px #999;
+    box-shadow: 0 8px 6px -9px #999;
+    z-index: 2;
+  }
+
+
+/*==================================================
+			Bootstrap 3 Media Queries        
+==================================================*/
+
+
+/* Large Devices (Desktops & Laptops) */
+
+@media (min-width: 1200px) and (max-width: 1299px) {
+    /* Navigation */
+    .site-nav-wrapper {
+        padding: 0 20px;
+    }
+}
+
+
+/* Medium Devices (Landscape Tablets & Medium Desktops) */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    /* Navigation */
+    .site-nav-wrapper {
+        padding: 0;
+    }
+    /* Generic */
+    .vertical-heading h2 {
+        font-size: 29px;
+    }
+    /* Services 02 */
+    #services-tabs .tab-bg {
+        padding: 16px 30px;
+        min-height: 300px;
+    }
+    .service-tab p {
+        line-height: 20px;
+    }
+}
+
+
+/* Small Devices (Portrait Tablets & Small Desktops) */
+
+@media (min-width: 768px) and (max-width: 991px) {
+       /* Home */
+       header h1{
+        margin-left: 20px;
+        margin-top: 200px;
+        font-size: 55px;
+        font-weight: 550;
+    }
+    header p{
+        color: #f7f7f7;
+        margin-top: 30px;
+        margin-left: 30px;
+        font-size: 20px;
+    }
+    header .btn{
+        background-color: #28B9B5;
+        color: #f7f7f7;
+        font-size: 25px;
+        position: absolute;
+        left: 43%;
+        margin-left: -70px;        
+    }
+    #arrow-down{
+        display: none;
+    }
+}
+
+
+/* Extra Small Devices (Landscape Phones & Portrait Tablets) */
+
+@media (max-width: 767px) {
+   
+}
+
+
+/* Extra Small Devices (Portrait Phones & Smaller Devices) */
+
+@media (max-width: 480px) {
+    /* Home */
+    .navbar-brand{
+        margin-right: 80px;
+    }
+    header h1{
+        margin-left: 20px;
+        margin-top: 160px;
+        font-size: 38px;
+        font-weight: 550;
+    }
+    header p{
+        color: #f7f7f7;
+        margin-top: 30px;
+        margin-left: 30px;
+        font-size: 16px;
+    }
+    header .btn{
+        background-color: #28B9B5;
+        color: #f7f7f7;
+        font-size: 15px;
+        position: absolute;
+        left: 35%;        
+    }
+    #arrow-down{
+        display: none;
+    }
+        /* About 01 */
+    /* Large Content Box */
+    .content-box-lg {
+        padding: 90px 0;
+    }
+    /* Vertical heading */
+    .vertical-heading {
+        text-align: center;
+    }
+    .vertical-heading h5 {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        display: block;
+        position: static;
+        margin-bottom: 15px;
+    }
+    .vertical-heading h2 {
+        font-size: 29px;
+        line-height: normal;
+        margin: 0;
+    }
+    #about-left {
+        margin-bottom: 50px;
+    }
+    #about-right {
+        text-align: center;
+    }
+}
+
+
+/* Extra Small Devices (Portrait Phones & Smaller Devices) */
+
+@media (max-width: 320px) {
+    header h1{
+        margin-left: 20px;
+        margin-top: 150px;
+        font-size: 36px;
+    }
+    header p{
+        color: #f7f7f7;
+        margin-top: 30px;
+        margin-left: 30px;
+        font-size: 14px;
+    }
+    header .btn{
+        background-color: #28B9B5;
+        color: #f7f7f7;
+        font-size: 14px;
+        position: absolute;
+        left: 35%;
+    
+    }
+      /* About 01 */
+    /* Large Content Box */
+    .content-box-lg {
+        padding: 90px 0;
+    }
+    /* Vertical heading */
+    .vertical-heading {
+        text-align: center;
+    }
+    .vertical-heading h5 {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        display: block;
+        position: static;
+        margin-bottom: 15px;
+    }
+    .vertical-heading h2 {
+        font-size: 29px;
+        line-height: normal;
+        margin: 0;
+    }
+    #about-left {
+        margin-bottom: 50px;
+    }
+    #about-right {
+        text-align: center;
+    }
+}
