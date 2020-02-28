@@ -22,10 +22,12 @@ header p{
     font-size: 16px;
 }
 header .btn{
-    background-color: #28B9B5;
+    background:none;
     color: #f7f7f7;
     font-size: 18px;
     position: absolute;
+    border-radius: 40px;
+    border: 2px #28B9B5 solid;
     left: 45%;
     bottom: -70px;
     text-align: center;
@@ -34,7 +36,9 @@ header .btn{
     
 }
 header .btn:hover{
-    color: #FF5049;
+padding: 10px;
+color: #f7f7f7;
+transition: 0.3s ease-in;
 }
 .navbar {
     padding: 35px 0 20px 0;
@@ -115,7 +119,7 @@ ul>li>a:focus {
     transform: rotate(-90deg);
     position: relative;
     top: 60px;
-    left: 25px;
+    left: 10px;
 }
 
 .vertical-heading h2 {
@@ -150,9 +154,85 @@ ul>li>a:focus {
     font-family: "Raleway", sans-serif;
     margin-top: 8px;
 }
+#contact{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#contact-left p {
+    margin: 60px 0 20px 48px;
+}
+#contact-right {
+    padding: 25px 30px;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+#contact-right h4 {
+    font-size: 24px;
+}
+
+#contact-right p {
+    margin-bottom: 25px;
+}
+
+#contact-right form .form-control {
+    font-family: "Open Sans", sans-serif;
+    padding: 10px 15px;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+#contact-right form textarea.form-control {
+    min-height: 164px;
+}
+.btn-general {
+    font-family: 'Raleway', sans-serif;
+    border-radius: 28px;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin: 0 6px;
+    padding: 12px 46px 12px 46px;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+.btn-yellow {
+    color: #fff;
+    border: 1px solid #FF5049;
+    background-color: #FF5049;
+}
+.btn-yellow:hover,
+.btn-yellow:focus {
+    color: #fff;
+    background-color: #212226;
+    border: 1px solid #212226;
+}
 
 
+footer {
+    background: #212226;
+    padding: 10px;
+}
 
+footer p {
+    color: #fff;
+    line-height: 20px;
+    margin: 0;
+}
+
+footer p span {
+    color: #28B9B5;
+}
+.btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 3px 15px;
+    border-radius: 4px;
+    font-size: 22px;
+    display: none;
+}
 
 /**********************************************
 *** GENERAL
