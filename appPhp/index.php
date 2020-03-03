@@ -1,4 +1,10 @@
 <?php
-require_once 'core/init.php';
+  require_once 'classes/DB.php';
 
-DB::getInstance();
+  $user = DB::getInstance()->get('users', array('username', '=', 'ken'));
+  if(!$user->count()){
+    echo 'No user';
+  }else{
+  echo $user->first()->password;
+
+  }

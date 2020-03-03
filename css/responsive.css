@@ -198,4 +198,7 @@
     #about-right {
         text-align: center;
     }
+    #contact-right img{
+        margin-left: 20px;
+    }
 }
