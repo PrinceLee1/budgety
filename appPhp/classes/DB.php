@@ -1,18 +1,23 @@
 <?php
+require_once 'core/init.php';
+
     class DB
     {
         private static $_instance = null;
         private $_pdo,
         $_query,
-        $_error = false
-        ,$_results,
+        $_error = false,
+        $_results,
         $_count =0;
     
+
+        
         private function __construct() {
             $host = 'localhost'; //HOST NAME.
             $db_name = 'budgety'; //Database Name
             $db_username = 'newuser'; //Database Username
             $db_password = 'password'; //Database Password
+            $token_name = 'token'; 
             try {
                 $this->_pdo = new PDO('mysql:host='. $host .';dbname='.$db_name, $db_username, $db_password);
                 // echo 'Connected';
@@ -77,10 +82,41 @@
             return $this->action('DELETE', $table, $where);
              }
              public function insert($table, $fields = array()) {
-                if(count($fields)){
-
-                }
+                    $keys = array_keys($fields);
+                    $values = ' ';
+                    $x = 1;
+                    foreach($fields as $field){
+                        $values .= '?';
+                        if($x < count($fields)){
+                            $values .= ', ';
+                        }
+                        $x++;
+                    }
+                $sql = "INSERT INTO users (`" . implode('`, `', $keys) . "`) VALUES ({$values})";
+                    if(!$this->query($sql, $fields)->error()){
+                        return true;
+                    }
+                
                 return false;
+             }
+
+             public function update($table, $id, $fields) {
+                $set = '';
+                $x = 1;
+
+                foreach($fields as $name => $value ) {
+                    $set .= "{$name} = ?";
+                    if($x < count($fields)){
+                        $set .= ',';
+                    }
+                    $x++;
+                }
+            
+             $sql = "UPDATE {$table} SET {$set} WHERE id = {$id} ";
+                    if(!$this->query($sql, $fields)->error()){
+                        return true;
+                    }
+                    return false;
              }
 
      public function results() {
