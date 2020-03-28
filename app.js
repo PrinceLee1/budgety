@@ -159,7 +159,7 @@ clearInputFields: function(){
   fields = document.querySelectorAll(DOMstrings.inputDescription + ',' + DOMstrings.inputValue);
   fieldsArray = Array.prototype.slice.call(fields);
   fieldsArray.forEach(function(currentVal, index, array){
-currentVal.value = "";
+currentVal.value = " ";
   });
   fieldsArray[0].focus();
 },
@@ -220,7 +220,7 @@ UICtrl.addListItem(newItem,input.type);
 UICtrl.clearInputFields();
 // 5. Calculate and Update budget
 updateBudget();
- }else{alert('Please add a Description and Value.Value should be greater than 0')}
+ }
     };
     var ctrlDeleteItem = function(event){
       var itemID,splitID,type,ID;

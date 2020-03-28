@@ -17,7 +17,6 @@ require_once 'core/init.php';
             $db_name = 'budgety'; //Database Name
             $db_username = 'newuser'; //Database Username
             $db_password = 'password'; //Database Password
-            $token_name = 'token'; 
             try {
                 $this->_pdo = new PDO('mysql:host='. $host .';dbname='.$db_name, $db_username, $db_password);
                 // echo 'Connected';
@@ -92,7 +91,7 @@ require_once 'core/init.php';
                         }
                         $x++;
                     }
-                $sql = "INSERT INTO users (`" . implode('`, `', $keys) . "`) VALUES ({$values})";
+                $sql = "INSERT INTO {$table} (`" . implode('`, `', $keys) . "`) VALUES ({$values})";
                     if(!$this->query($sql, $fields)->error()){
                         return true;
                     }

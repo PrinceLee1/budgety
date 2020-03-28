@@ -15,7 +15,7 @@ class Validate{
                         $value = trim($source[$item]);
                         $item = escape($item);
                         if($rule === 'required' && empty($value)){
-                            $this->addError("{$item} is required");
+                            $this->addError("<p style='float:right;background-color:red;color:white;margin:0;font-size:13px'>{$item} is required.</p>");
                         }else if(!empty($value)){
                             switch($rule){
                                 case 'min';
@@ -32,7 +32,7 @@ class Validate{
 
                         case 'matches';
                         if($value != $source[$rule_value]){
-                            $this->addError("{$rule_value} must match {$item}. ");
+                            $this->addError("{$rule_value} must match {$item}.");
                         }
                     break;
 
