@@ -93,6 +93,21 @@
 /* Extra Small Devices (Portrait Phones & Smaller Devices) */
 
 @media (max-width: 480px) {
+    .tops{
+        height: 70vh;
+    }
+    .tops h4{
+        font-size: 15px;
+    }
+    .budget__title {
+        margin-top: 220px;
+    }
+    .budget__income ,.budget__expenses {
+        
+        width: 230px;
+        margin-left:55px
+    }
+
     /* Home */
     .navbar-brand{
         margin-right: 80px;
@@ -152,6 +167,22 @@
 /* Extra Small Devices (Portrait Phones & Smaller Devices) */
 
 @media (max-width: 320px) {
+    .tops{
+        height: 70vh;
+    }
+    .tops h4{
+        font-size: 13px;
+    }
+    .budget__title {
+        margin-top: 220px;
+    }
+    .budget__income ,.budget__expenses {
+        
+        width: 230px;
+        margin-left:55px
+    }
+
+
     header h1{
         margin-left: 20px;
         margin-top: 150px;

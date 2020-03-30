@@ -3,15 +3,11 @@ require_once 'classes/DB.php';
 $user = new User();
 if($user->isLoggedIn()){ 
 ?>
-<p> Hello <a href="#"><?php echo escape($user->data()->username);?></a>
-<ul>
-    <li><a href="logout.php" style="color:red">Log Out</a></li>
-</ul>
 <?php
 }else{ Redirect::to('login.php');}
 ?>
   <?php $conn = new mysqli("localhost", "newuser", "password", "budgety");$status =$user->data()->username; $Sql = "SELECT * FROM income WHERE user_id='$status' "; $result = mysqli_query($conn, $Sql); $results = mysqli_query($conn,"SELECT SUM(income_amount) AS income_amount FROM income WHERE user_id='$status'"); 
-  $row = mysqli_fetch_assoc($results);  $sum = $row['income_amount'];$expense = mysqli_query($conn,"SELECT SUM(expense_amount) AS expense_amount FROM expenses WHERE user_id='$status'"); $expRow = mysqli_fetch_assoc($expense);$minus = $expRow['expense_amount']; $calculateBudget = $sum - $minus; ?>
+  $row = mysqli_fetch_assoc($results);  $sum = $row['income_amount'];$expense = mysqli_query($conn,"SELECT SUM(expense_amount) AS expense_amount FROM expenses WHERE user_id='$status'"); $expRow = mysqli_fetch_assoc($expense);$minus = $expRow['expense_amount']; $calculateBudget = $sum - $minus; $percentage = ($sum * 100)/$calculateBudget;?>
                        
 <!DOCTYPE html>
 <html lang="en">
@@ -25,18 +21,30 @@ if($user->isLoggedIn()){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link type="text/css" rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../css/responsive.css">
+
         <link rel="shortcut icon" href="../budget.png">
 
 
         <title>Welcome, Start Keeping Tracks</title>
     </head>
     <body>
-        
+    <div class="container-fluid tops">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <h3 class="text-center text-uppercase" style="color:#FF5049">-- Welcome <?php echo $user->data()->username;?> --</h3>
+                <p class="text-center" style="color:white">Please start keeping Track of your<br> Income and Expenses. Let's help you curtail your spending.</p>
+                <h4 class="text-center" style="color:#28B9B5">-- When you are done you can <a href="logout.php" style="color:#FF5049;">Log Out Here</a> --</h4>
+</div>
+        <div class="col-lg-8 col-sm-6 col-xs-12">
         <div class="top">
             <div class="budget">
                 <div class="budget__title">
+            
                     Available Budget in <span class="budget__title--month">%Month%</span>:
                 </div>
                 
@@ -54,21 +62,21 @@ if($user->isLoggedIn()){
                     <div class="budget__expenses--text">Expenses</div>
                     <div class="right clearfix">
                         <div class="budget__expenses--value"><?php echo '₦'.$minus;?></div>
-                        <div class="budget__expenses--percentage">45%</div>
+                        <div class="budget__expenses--percentage"><?php echo round($percentage).'%'?></div>
                     </div>
                 </div>
             </div>
-
+</div>
         </div>
-    
-        
+    </div>
+        </div>
         <div class="container-fluid bottom">
             <div class="add">
                 <div class="add__container">
                          <div class="row">
                                 <div class="col-md-3 col-12">
                                 <!-- <iframe name="votar" style="display:block;"></iframe> -->
-<form action="test.php" method="post" >
+<form action="action.php" method="post" >
                     <select class="add__type" name="read" >
                         <option value="inc" selected name="inc" id="inc">+</option>
                         <option value="exp" name="exp" name="exp" id="exp">-</option>
@@ -161,7 +169,21 @@ if($user->isLoggedIn()){
             </div>
             </div>
         </div>
-        
+        </section>
+    <!-- <footer class="text-center">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        Made with  <i class="fa fa-heart" style="color: red;"></i>  By <span> Prince Lee.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+      
+
+    </footer> -->
         <!-- <script src="../app.js"></script> -->
     </body>
 </html>

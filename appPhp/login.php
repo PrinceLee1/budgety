@@ -15,7 +15,7 @@ if(Input::exists()){
             if($login){
                 Redirect::to('index.php');
             }else{
-                echo '<p>Sorry logging in failed</p>';
+                echo '<p style="color:red;height:70px">Sorry logging in failed</p>';
             }
         }else{
             foreach($validation->errors() as $error){
