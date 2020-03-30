@@ -154,15 +154,15 @@ deleteListItem: function(selectorID){
 el.parentNode.removeChild(el);
 },
 
-clearInputFields: function(){
-  var fields,fieldsArray;
-  fields = document.querySelectorAll(DOMstrings.inputDescription + ',' + DOMstrings.inputValue);
-  fieldsArray = Array.prototype.slice.call(fields);
-  fieldsArray.forEach(function(currentVal, index, array){
-currentVal.value = " ";
-  });
-  fieldsArray[0].focus();
-},
+// clearInputFields: function(){
+//   var fields,fieldsArray;
+//   fields = document.querySelectorAll(DOMstrings.inputDescription + ',' + DOMstrings.inputValue);
+//   fieldsArray = Array.prototype.slice.call(fields);
+//   fieldsArray.forEach(function(currentVal, index, array){
+// currentVal.value = " ";
+//   });
+//   fieldsArray[0].focus();
+// },
 displayBudget : function(obj){
 document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
 document.querySelector(DOMstrings.incomeLabel).textContent = obj.totalInc;
@@ -217,7 +217,7 @@ newItem = budgetController.addItem(input.type,input.description, input.value);
 //3.Add the item to the UI 
 UICtrl.addListItem(newItem,input.type);
 // 4. Clear Fields
-UICtrl.clearInputFields();
+// UICtrl.clearInputFields();
 // 5. Calculate and Update budget
 updateBudget();
  }

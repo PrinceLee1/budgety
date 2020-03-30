@@ -33,9 +33,16 @@ class User{
         }
     }
     public function insertIncome($fields = array()) {
-        
 
         if(!$this->_db->insert('income',$fields)){
+            throw new Exception('Sorry cant save your Income now!');
+        }
+    }
+
+       public function insertExpenses($fields = array()) {
+        
+
+        if(!$this->_db->insert('expenses',$fields)){
             throw new Exception('Sorry cant save your Income now!');
         }
     }

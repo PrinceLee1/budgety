@@ -8,11 +8,11 @@ if($user->isLoggedIn()){
     <li><a href="logout.php" style="color:red">Log Out</a></li>
 </ul>
 <?php
-}else{
-    Redirect::to('login.php');
-}
+}else{ Redirect::to('login.php');}
 ?>
-
+  <?php $conn = new mysqli("localhost", "newuser", "password", "budgety");$status =$user->data()->username; $Sql = "SELECT * FROM income WHERE user_id='$status' "; $result = mysqli_query($conn, $Sql); $results = mysqli_query($conn,"SELECT SUM(income_amount) AS income_amount FROM income WHERE user_id='$status'"); 
+  $row = mysqli_fetch_assoc($results);  $sum = $row['income_amount'];$expense = mysqli_query($conn,"SELECT SUM(expense_amount) AS expense_amount FROM expenses WHERE user_id='$status'"); $expRow = mysqli_fetch_assoc($expense);$minus = $expRow['expense_amount']; $calculateBudget = $sum - $minus; ?>
+                       
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,6 +20,9 @@ if($user->isLoggedIn()){
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -37,12 +40,12 @@ if($user->isLoggedIn()){
                     Available Budget in <span class="budget__title--month">%Month%</span>:
                 </div>
                 
-                <div class="budget__value">+ 2,345.64</div>
+                <div class="budget__value"><?php echo '₦'.$calculateBudget;?></div>
                 
                 <div class="budget__income clearfix">
                     <div class="budget__income--text">Income</div>
                     <div class="right">
-                        <div class="budget__income--value">+ 4,300.00</div>
+                        <div class="budget__income--value"><?php echo '₦'.$sum;?></div>
                         <div class="budget__income--percentage">&nbsp;</div>
                     </div>
                 </div>
@@ -50,36 +53,35 @@ if($user->isLoggedIn()){
                 <div class="budget__expenses clearfix">
                     <div class="budget__expenses--text">Expenses</div>
                     <div class="right clearfix">
-                        <div class="budget__expenses--value">- 1,954.36</div>
+                        <div class="budget__expenses--value"><?php echo '₦'.$minus;?></div>
                         <div class="budget__expenses--percentage">45%</div>
                     </div>
                 </div>
             </div>
 
         </div>
-        
-        
+    
         
         <div class="container-fluid bottom">
             <div class="add">
                 <div class="add__container">
                          <div class="row">
                                 <div class="col-md-3 col-12">
-                                <iframe name="votar" style="display:none;"></iframe>
-<form action="index.php" method="post" target="votar">
-                    <select class="add__type" >
+                                <!-- <iframe name="votar" style="display:block;"></iframe> -->
+<form action="test.php" method="post" >
+                    <select class="add__type" name="read" >
                         <option value="inc" selected name="inc" id="inc">+</option>
                         <option value="exp" name="exp" name="exp" id="exp">-</option>
                     </select>
                                 </div>
                             <div class="col-md-3 col-12">
-                    <input type="text" class="add__description" placeholder="Add description" name="description" id="description"   >
+                    <input type="text" class="add__description" placeholder="Add description" name="description" id="description" required  >
                                 </div>
                                 <div class="col-md-3 col-12">
-                    <input type="number" class="add__value" placeholder="Value" name="budget-amount" id="budget-amount">
+                    <input type="number" class="add__value" placeholder="Value" name="budget-amount" id="budget-amount" required>
                     </div>
                     <div class="col-md-3 col-12">
-                    <button class="add__btn" type="submit"><i class="ion-ios-checkmark-outline"></i></button>
+                    <button class="add__btn" type="submit" name="check"><i class="ion-ios-checkmark-outline"></i></button>
                     </div>
 </form>
                     </div>
@@ -92,29 +94,31 @@ if($user->isLoggedIn()){
                 <div class="income">
                     <h2 class="icome__title">Income</h2>
                     <div class="income__list">
+                    <?php
+                     if (mysqli_num_rows($result) > 0) {
+                        echo "<table class='table table-striped table-success'>
+                        <thead>
+                          <tr>
+                            <th scope='col'>INCOME DESCRIPTION</th>
+                            <th scope='col'>AMOUNT</th>
+                            <th scope='col'>MONTH</th>
+                          </tr>
+                        </thead>
+                        <tbody>";
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr><td>" . $row['income_description']."</td>
+                            <td>" .'₦'. $row['income_amount']."</td>
+                            <td>" . $row['month']."</td></tr>";       
+                        }
                        
-                        <!--
-                        <div class="item clearfix" id="income-0">
-                            <div class="item__description">Salary</div>
-                            <div class="right clearfix">
-                                <div class="item__value">+ 2,100.00</div>
-                                <div class="item__delete">
-                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="item clearfix" id="income-1">
-                            <div class="item__description">Sold car</div>
-                            <div class="right clearfix">
-                                <div class="item__value">+ 1,500.00</div>
-                                <div class="item__delete">
-                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        -->
-                        
+                        echo "</tbody></table>";
+                      
+                      
+    }else{
+        echo 'No records Found';
+    }
+                 ?>     
+
                     </div>
                 </div>
                 </div>
@@ -123,29 +127,33 @@ if($user->isLoggedIn()){
                     <h2 class="expenses__title">Expenses</h2>
                     <div class="expenses__list ">
                        
-                        <!--
-                        <div class="item clearfix" id="expense-0">
-                            <div class="item__description">Apartment rent</div>
-                            <div class="right clearfix">
-                                <div class="item__value">- 900.00</div>
-                                <div class="item__percentage">21%</div>
-                                <div class="item__delete">
-                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item clearfix" id="expense-1">
-                            <div class="item__description">Grocery shopping</div>
-                            <div class="right clearfix">
-                                <div class="item__value">- 435.28</div>
-                                <div class="item__percentage">10%</div>
-                                <div class="item__delete">
-                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        -->
+                    <?php
+                $conn = new mysqli("localhost", "newuser", "password", "budgety");
+                        $status =$user->data()->username;
+                         $Sql = "SELECT * FROM expenses WHERE user_id='$status' ";
+                         $result = mysqli_query($conn, $Sql);
+                         if (mysqli_num_rows($result) > 0) {
+                            echo "<table class='table table-striped table-danger'>
+                            <thead>
+                              <tr>
+                                <th scope='col'>EXPENSE DESCRIPTION</th>
+                                <th scope='col'>AMOUNT</th>
+                                <th scope='col'>TIME</th>
+                              </tr>
+                            </thead>
+                            <tbody>";
+                            while($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr><td>" . $row['expense_description']."</td>
+                                          <td>" .'₦'. $row['expense_amount']."</td>
+                                          <td>" . $row['month']."</td></tr>";        
+                            }
+                           
+                            echo "</tbody></table>";
+                          
+        }else{
+            echo 'No records Found';}
+                            
+                       ?>
                         
                     </div>
                 </div>
@@ -154,6 +162,6 @@ if($user->isLoggedIn()){
             </div>
         </div>
         
-        <script src="../app.js"></script>
+        <!-- <script src="../app.js"></script> -->
     </body>
 </html>
