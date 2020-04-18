@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/animate/animate.min.css">
+
 <link rel="stylesheet" href="css/responsive-tabs/responsive-tabs.min.css">
 
     <!-- Owl Carousel CSS -->
@@ -27,16 +29,35 @@
 <body>
     
     <header>
+        
         <nav class="navbar navbar-expand-lg navbar-fixed-top">
             <div class="navbar-brand">
                 <a href="#"><img src="budget.png" width="50px"></a>
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-             <i class="fa fa-bars"></i>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="true" aria-label="Toggle navigation" style="color: white;">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 31.177 31.177" style="enable-background:new 0 0 31.177 31.177;color:white" xml:space="preserve" width="25px" height="25px" >
+                    <g>
+                        <g>
+                            <path class="menubar" d="M30.23,1.775H0.946c-0.489,0-0.887-0.398-0.887-0.888S0.457,0,0.946,0H30.23    c0.49,0,0.888,0.398,0.888,0.888S30.72,1.775,30.23,1.775z" fill="#004165" />
+                        </g>
+                        <g>
+                            <path class="menubar" d="M30.23,9.126H12.069c-0.49,0-0.888-0.398-0.888-0.888c0-0.49,0.398-0.888,0.888-0.888H30.23    c0.49,0,0.888,0.397,0.888,0.888C31.118,8.729,30.72,9.126,30.23,9.126z" fill="#004165" />
+                        </g>
+                        <g>
+                            <path class="menubar" d="M30.23,16.477H0.946c-0.489,0-0.887-0.398-0.887-0.888c0-0.49,0.398-0.888,0.887-0.888H30.23    c0.49,0,0.888,0.397,0.888,0.888C31.118,16.079,30.72,16.477,30.23,16.477z" fill="#004165" />
+                        </g>
+                        <g>
+                            <path class="menubar" d="M30.23,23.826H12.069c-0.49,0-0.888-0.396-0.888-0.887c0-0.49,0.398-0.888,0.888-0.888H30.23    c0.49,0,0.888,0.397,0.888,0.888C31.118,23.43,30.72,23.826,30.23,23.826z" fill="#004165" />
+                        </g>
+                        <g>
+                            <path class="menubar" d="M30.23,31.177H0.946c-0.489,0-0.887-0.396-0.887-0.887c0-0.49,0.398-0.888,0.887-0.888H30.23    c0.49,0,0.888,0.398,0.888,0.888C31.118,30.78,30.72,31.177,30.23,31.177z" fill="#004165" />
+                        </g>
+                    </g>
+                </svg>
             </button>
           
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <ul  class="nav justify-content-center">
+                <ul  class="nav justify-content-center animated fadeInUp">
                   <li class="nav-item">
                     <a href="#home"> Home</a>    
                   </li>
@@ -45,10 +66,10 @@
                   </li>
               
                   <li class="nav-item">
-                    <a href=""> Get Started</a>    
+                    <a href="#how"> How It Works</a>    
                   </li>
                   <li class="nav-item" >
-                    <a href="#signup"> Login</a>    
+                    <a href="appPhp/login.php"> Login</a>    
                   </li>
               </ul>
           
@@ -58,9 +79,10 @@
         <div class="container-fluid" id="home">
             <div class="row">
                 <div class="col-md-12 col-12">
-                    <h1 class="text-center">Earn, Spend and<br> Keep Track.</h1>
-                    <p class="text-center">At Budety we help you keep track of your income and expenses.<br>Simply sign up to Get started or Login to continue.</p>
-                  <button class="btn" style=" margin-left: 15px; ">Get Started</button>
+                    <h1 class="text-center animated zoomInLeft">Earn, Spend and<br> Keep Track.</h1>
+                    <p class="text-center animated slideInDown">At Budety we help you keep track of your income and expenses.<br>Simply sign up to Get started or Login to continue.</p>
+                  <button class="btn animated bounce" style=" margin-left: 15px; "><a href="appPhp/register.php" style="  text-decoration: none;
+                    color: white;"> Get Started</a></button>
                 </div>
             </div>
             <a href="#about" id="arrow-down">
@@ -70,6 +92,7 @@
         </div>
     </header>
     <section id="about">
+<hr style="border: 12px solid #28B9B5;transform: translateY(-20px);" class="hr">
 
         <!-- About 01 -->
         <div id="about-01">
@@ -84,21 +107,21 @@
                         <div class="col-md-6 col-sm-6 wow slideInLeft" data-wow-duration="1s">
 
                             <div id="about-left">
-                                <div class="vertical-heading">
-                                    <h5>What We Do</h5>
-                                    <h2>A <strong>Story</strong><br>About Us</h2>
+                                <div class="vertical-heading animated slideInLeft">
+                                    <h3>We help you easily save your Income and Expenses.</h3>
+                                    <p>Budgety is a wonderful tool for managing your finances. Without knowing your cash flow, you could be putting yourself into a bad financial situation and not even know it. You can only get by without knowing your cash flow for so long before you get into financial trouble, so make the time you know the flow of your cash.</p>
                                 </div>
                             </div>
 
                         </div>
 
                         <!-- About Right Side -->
-                        <div class="col-md-6 col-sm-6 wow slideInRight" data-wow-duration="1s">
+                        <div class="col-md-6 col-sm-6 animated jackInTheBox" data-wow-duration="1s">
 
                             <div id="about-right">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente aspernatur harum libero et nostrum sequi consequatur, tempore accusamus ab esse, voluptatem laudantium voluptas rerum? Laborum id ad alias saepe nemo,alias saepe ne consequatur.</p>
+                               
+                                <img src="https://www.axelor.com/fr/wp-content/uploads/sites/2/2019/06/BUDGET.svg" alt="About Us" class="img-responsive">
 
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur asperiores ad culpa similique, ratione dicta. Cumque, officia. Velit et inventore hic, unde, eum ea! Vitae dolores culpa molestias, in ratione.</p>
                             </div>
 
                         </div>
@@ -106,13 +129,19 @@
                     </div>
 
                     <!-- About Bottom -->
-                    <div class="row">
 
-                        <div class="col-md-12 wow fadeInUp" data-wow-duration="2s">
-
+                    <div class="row" id="how">
+                        
+                        <div class="col-md-6 animated fadeIn">
                             <div id="about-bottom">
-                                <img src="about-img.png" alt="About Us" class="img-responsive">
+                                <img src="demo.png" alt="About Us" class="img-responsive">
                             </div>
+
+                        </div>
+                        <div class="col-md-6 bodyIcon" style="margin-top: 100px;">
+                           <h3>How It Works.</h3>
+                           <p>Once logged in, you can start saving your income and expenses and you can search for any budget for any month and we will do the calculations for you.</p>
+                          
 
                         </div>
 
@@ -139,7 +168,7 @@
 
                         <div id="tech-statement" class="text-center">
 
-                            <h3><i class="fa fa-quote-left"></i> We design and develop services for customers of all sizes, <br> specializing in creating stylish, modern websites and online stores. <i class="fa fa-quote-right"></i> </h3>
+                            <h3><i class="fa fa-quote-left"></i>Almost everyone, even people with large paychecks and plenty of money in the bank, can benefit from budgeting. <i class="fa fa-quote-right"></i> </h3>
                             <p>- Prince Lee -</p>
 
                         </div>
@@ -153,57 +182,22 @@
         </div>
 
     </section>
-    <section id="contact">
-
-        <div class="content-box-md">
-
-            <div class="container-fluid">
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div id="contact-left">
-                        <div class="vertical-heading">
-                            <h5>Login or SignUp</h5>
-                            <h2>Get<br> <strong>Started</strong></h2>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias modi est itaque aliquam sit, minima esse nihil mollitia no.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-
-                        <!-- Contact Right -->
-                        <div id="contact-right">
-                            <h4 class="text-center">Login to Your Account</h4><hr>
-                         <a href="appPhp/login.php"><img src="login (1).svg" alt="login" width="180px" style="margin-left:80px;"></a> 
-
-                        </div>
-
-                    </div>
-                    <div class="col-md-4">
-
-                        <!-- Contact Right -->
-                        <div id="contact-right">
-                            <h4 class="text-center">Signup to Get Started</h4><hr>
-                           <a href="appPhp/register.php"><img src="website.svg" alt="login" width="180px" style="margin-left:80px;"></a> 
-
-                            
-                        </div>
-
-                    </div>
-
-                </div>
-
+    <div class="container-fluid bodyIcon">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center">Monitor the evolution of your budgets</h3>
+                <p class="text-center">Save time by entering only once. The budget management software will then automatically track the budgets for you, over the predefined period. View on each budget the amounts planned, committed and actually achieved to improve the management of your activity.</p>
             </div>
-
         </div>
+    </div>
 
-    </section>
+
     <footer class="text-center">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <p>
-                        Made with  <i class="fa fa-heart" style="color: red;"></i>  By <span> Prince Lee.</span>
+                        Made with  <i class="fa fa-heart animated flash infinite" style="color: red;"></i>  By <span> Prince Lee.</span>
                     </p>
                 </div>
             </div>

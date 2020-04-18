@@ -32,6 +32,9 @@ class User{
             throw new Exception('There was a problem creating account!');
         }
     }
+    public function userExists(){
+        
+    }
     public function insertIncome($fields = array()) {
 
         if(!$this->_db->insert('income',$fields)){

@@ -14,6 +14,9 @@
     box-shadow: 0 8px 6px -9px #999;
     z-index: 2;
   }
+  .hr.scrolled{
+      background:  #FF5049;
+  }
 
 
 /*==================================================
@@ -92,7 +95,7 @@
 
 /* Extra Small Devices (Portrait Phones & Smaller Devices) */
 
-@media (max-width: 480px) {
+@media only screen and (max-width: 480px) {
     .tops{
         height: 70vh;
     }
@@ -128,8 +131,9 @@
         background-color: #28B9B5;
         color: #f7f7f7;
         font-size: 15px;
-        position: absolute;
-        left: 35%;        
+        left: 35%;
+        bottom: -33px;   
+             
     }
     #arrow-down{
         display: none;
@@ -166,7 +170,7 @@
 
 /* Extra Small Devices (Portrait Phones & Smaller Devices) */
 
-@media (max-width: 320px) {
+@media screen and (max-width: 320px) {
     .tops{
         height: 70vh;
     }

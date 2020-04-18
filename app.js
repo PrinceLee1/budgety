@@ -1,10 +1,13 @@
 $(function () {
   $(document).scroll(function () {
     var $nav = $(".navbar-fixed-top");
+    var $hr = $(".hr");
     $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+    $hr.toggleClass('scrolled', $(this).scrollTop() > $hr.height());
 
   });
 });
+
 
 //This part handles the budget or can be called the budget controller
 var budgetController = (function(){

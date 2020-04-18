@@ -130,4 +130,22 @@ require_once 'core/init.php';
             return $this->_count; 
         }
     }
+    class Database {
+        private $host = "localhost";
+        private $user = "newuser";
+        private $password = "password";
+        private $database = "budgety";
+        
+        function runQuery($sql) {
+            $conn = new mysqli($this->host,$this->user,$this->password,$this->database);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
+        $result = $conn->query($sql);
+      
+        $conn->close();
+    
+                return $result;
+        }
+    }
 ?>

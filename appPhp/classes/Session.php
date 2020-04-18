@@ -1,16 +1,21 @@
 <?php
 class Session{
+ 
     public static function exists(){
+        $name ='';
         return (isset($_SESSION[$name])) ? true : false;
     }
     public static function put($name, $value) {
+        $name = '';
         return $_SESSION[$name] = $value;
     }
 
     public static function get($name) {
+        $name = '';
         return $_SESSION[$name];
     }
     public static function delete($name){
+        $name = '';
         if(self::exists($name)){
             unset($_SESSION[$name]);
         }

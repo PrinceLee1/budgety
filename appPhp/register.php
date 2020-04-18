@@ -15,7 +15,7 @@ if(Input::exists()){
             'required' => true,
             'min' => 6
         ),
-        'password_again' => array(
+        'repeat-password' => array(
             'required' => true,
             'matches' => 'password'
         ),
@@ -24,6 +24,7 @@ if(Input::exists()){
             'min' => 2,
             'max' => 50
         ),
+
 
     ));
     if($validation->passed()){
@@ -40,8 +41,8 @@ if(Input::exists()){
                     'group' => 1
 
                 ));
-                Session::flash('home', 'You have been registered!');
                 Redirect::to('index.php');
+                echo "<p class='text-center pError'>Thank you for using Budgety, please Login to Continue</p>";
             }catch(Exception $e){
         die($e->getMessage());
             }
@@ -64,6 +65,7 @@ if(Input::exists()){
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/animate/animate.min.css">
 <link rel="stylesheet" href="../css/responsive-tabs/responsive-tabs.min.css">
 
     <!-- Owl Carousel CSS -->
@@ -89,6 +91,13 @@ if(Input::exists()){
           border-bottom:0px;
           border-right:0px; border-left:0px
         }
+        .pError{
+            background:red;
+            font-size:23px;
+            color:white;
+            height:50px
+            
+        }
         a{
             color:#28B9B5;float:right;transform:translateY(-30px);
             margin-right:60px;font-size:15px;text-decoration:none
@@ -96,9 +105,9 @@ if(Input::exists()){
         }
         .submit{
             margin-bottom:18px;
-            width:150px;
+            width:100%;
             height:45px;
-            margin-left:100px;
+            /* margin-left:40px; */
             background-color:#f41366;
             color:white;
             border:0px;
@@ -119,6 +128,8 @@ transform:translateX(-46px)
             border:12px solid grey;
             border-radius:65px
         }
+        img{
+            background: rgba(0, 0, 0, 0.9)   }
 /*** MEDIA QUERIES***/
 @media (min-width: 768px) and (max-width: 991px) {
     .user-img{
@@ -134,7 +145,7 @@ transform:translateX(-46px)
             margin-top:20px
         }
                 .container-fluid{
-           background-image:  url(../login.jpeg);
+                    background-image:  url(../register.jpg);
     background-position: center;
        }
        .register-page{
@@ -159,12 +170,14 @@ transform:translateX(-46px)
              }
         .takes{margin-top:70px}
         .submit{
-            width:150px;
+            /* width:150px; */
             margin-top:20px
         }
                 .container-fluid{
-           background-image:  url(../login.jpeg);
+           background-image:  url(../register.jpeg);
     background-position: center;
+    /* background-repeat:no-repeat; */
+    height:100vh
        }
        .register-page{
            background-color:white;
@@ -187,12 +200,14 @@ transform:translateX(-46px)
              }
         .takes{margin-top:70px}
         .submit{
-            width:100px;
+            /* width:100px; */
             margin-top:20px
         }
                 .container-fluid{
-           background-image:  url(../login.jpeg);
+           background-image:  url(../register.jpg);
     background-position: center;
+    /* background-repeat:no-repeat;0 */
+    height:100vh
        }
        .register-page{
            background-color:white;
@@ -208,34 +223,34 @@ transform:translateX(-46px)
     </style>
 </head>
 <body>
- <div class="container-fluid">
+ <div class="container-fluid" style="background-color:#fffafa">
      <div class="row">
          <div class="col-md-8">
-             <img src="../login.jpeg" alt="signup" class="user-img">
+             <img src="../stats-bg.jpg" alt="signup" class="user-img">
     </div>
-         <div class="col-md-4">
+         <div class="col-md-4 animated zoomInLeft">
     <form action="" method="post" class="form-group">
          <div class="register-page">
             <h3>GET STARTED</h3>
             <p class="text-center takes">It takes no time to get you Started.</p>
             <div class="col-md-12">
     <div class="field">
-  <input type="text" name="username" id="username" autocomplete="off" value="<?php echo escape(Input::get('username')) ?>" placeholder="USERNAME" class="form-control" >
+  <input type="text" name="username" id="username" autocomplete="off" value="<?php echo escape(Input::get('username')) ?>" placeholder="USERNAME" class="form-control" required>
     </div>
     </div>
     <div class="col-md-12">
     <div class="field">
-    <input type="password" name="password" id="password" autocomplete="off" value="<?php echo escape(Input::get('password')) ?>" placeholder="PASSWORD" class="form-control">
+    <input type="password" name="password" id="password" autocomplete="off" value="<?php echo escape(Input::get('password')) ?>" placeholder="PASSWORD" class="form-control" required>
     </div>
     </div>
     <div class="col-md-12">
     <div class="field">
-    <input type="password" name="password_again" id="password_again" value="<?php echo escape(Input::get('password_again')) ?>" placeholder="REPEAT PASSWORD" class="form-control">
+    <input type="password" name="repeat-password" id="repeat-password" value="<?php echo escape(Input::get('repeat-password')) ?>" placeholder="REPEAT PASSWORD" class="form-control" required>
     </div>
     </div>
     <div class="col-md-12">
     <div class="field">
-    <input type="text" name="name" id="name" value="<?php echo escape(Input::get('name')) ?>" placeholder="FULL NAME" class="form-control">
+    <input type="text" name="name" id="name" value="<?php echo escape(Input::get('name')) ?>" placeholder="FULL NAME" class="form-control" required>
     </div>
     </div>
     <input type="hidden" name="token" value="<?php echo Token::generate();?>">

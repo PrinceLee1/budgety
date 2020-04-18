@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        .pError{
+            background:red;
+            font-size:23px;
+            color:white;
+            height:50px
+        }
+    </style>
+</head>
+<body>
 <?php
 class Validate{
     private $_passed = false,
@@ -15,31 +31,31 @@ class Validate{
                         $value = trim($source[$item]);
                         $item = escape($item);
                         if($rule === 'required' && empty($value)){
-                            $this->addError("<p style='float:right;background-color:red;color:white;margin:0;font-size:13px'>{$item} is required.</p>");
+                            $this->addError("<p  class='text-center pError'>{$item} is required.</p>");
                         }else if(!empty($value)){
                             switch($rule){
                                 case 'min';
                                 if(strlen($value) < $rule_value){
-                                    $this->addError("{$item} must be a minimum of {$rule_value} characters.");
+                                    $this->addError("<p class='text-center pError'>{$item} must be a minimum of {$rule_value} characters.</p>");
                                 }
                             break;
 
                             case 'max';
                             if(strlen($value) > $rule_value){
-                                $this->addError("{$item} must be a maximum of {$rule_value} characters.");
+                                $this->addError("<p class='text-center  pError'>{$item} must be a maximum of {$rule_value} characters.</p>");
                             }
                         break;
 
                         case 'matches';
                         if($value != $source[$rule_value]){
-                            $this->addError("{$rule_value} must match {$item}.");
+                            $this->addError("<p class='text-center  pError'>{$rule_value} must match {$item}.</p>");
                         }
                     break;
 
                     case 'unique';
                     $check = $this->_db->get($rule_value, array($item, '=', $value));
                     if($check->count()){
-                        $this->addError("{$item} already exist.");
+                        $this->addError("<p class='text-center  pError'>{$item} already exist.</p>");
                     }
                 break;
                             }
@@ -63,3 +79,6 @@ class Validate{
               return  $this->_passed;
             }
 }
+?>
+</body>
+</html>

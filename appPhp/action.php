@@ -8,6 +8,8 @@ if(isset($_POST['check'])){
     $des = $_POST['description'];
     $amount = $_POST['budget-amount'];
     $user = new User();
+    $searched = date('F Y');
+    // echo $searched;exit;
               $user_id=  $user->data()->username;
            $month=   date('Y-m-d H:i:s');
              try{
@@ -15,7 +17,8 @@ if(isset($_POST['check'])){
                     'income_description' => $des,
                     'income_amount' => $amount,
                     'user_id' => $user_id,
-                    'month' => $month
+                    'month' => $month,
+                    'searched_month' => $searched
                  ));
                  Redirect::to('index.php');
              }catch(Exception $e){
@@ -32,6 +35,7 @@ if(isset($_POST['check'])){
 if(isset($_POST['check'])){
     $des = $_POST['description'];
     $amount = $_POST['budget-amount'];
+    $searched = date('F Y');
     $user = new User();
               $user_id=  $user->data()->username;
            $month=   date('Y-m-d H:i:s');
@@ -40,7 +44,9 @@ if(isset($_POST['check'])){
                     'expense_description' => $des,
                     'expense_amount' => $amount,
                     'user_id' => $user_id,
-                    'month' => $month
+                    'month' => $month,
+                    'searched_month' => $searched
+
                  ));
                  Redirect::to('index.php');
              }catch(Exception $e){

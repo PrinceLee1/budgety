@@ -1,10 +1,37 @@
 /*********************************************
 FOR HOME COMPONENT
 **********************************************/
+.cd-dropdown h2, .cd-dropdown-content a, .cd-dropdown-content ul a{
+	height:55px;
+	line-height:55px;
+}
+.cp_navi_main_wrapper{
+	position:relative;
+	padding:25px 15px 0 15px;
+	z-index:1;
+}
+svg{
+    color: #f41366;
+}
+body p{
+    color: #32325d;
+    font-size: 18px;
+    line-height: 1.8em;
+}
+.bodyIcon h3,.vertical-heading h3{
+    color: #32325d!important;
+    font-size: 30px!important;
+    font-family: "Montserrat",sans-serif,"Arial"!important;
+    font-weight: 600!important;
+}
+hr{
+    border: 12px solid #28B9B5;transform: translateY(-20px);
+}
 header{
     height: 90vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(stats-bg.jpg);
-    background-position: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.65)),url("https://cotr.bc.ca/media/content/images/hero-images---programs/business-4.jpg") no-repeat fixed center;
+    background-size: cover;
+
     font-family: 'Simonetta', ;
 }
 header h1{
@@ -22,7 +49,11 @@ header p{
     font-size: 16px;
     
 }
-header .btn{
+header a{
+    text-decoration: none;
+    color: white;
+}
+header .btn {
     background:none;
     color: #f7f7f7;
     font-size: 18px;
@@ -257,7 +288,7 @@ body {
 
 .tops {
     height: 40vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(back.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), url("stats-bg.jpg");
     background-size: cover;
     background-position: center;
     position: relative;
@@ -351,6 +382,7 @@ body {
     margin: 0 auto;
     text-align: center;
 }
+
 
 .add__type {
     width: 100%;

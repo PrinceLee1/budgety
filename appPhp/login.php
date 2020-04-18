@@ -5,7 +5,8 @@ if(Input::exists()){
         $validate = new Validate();
         $validation = $validate->check($_POST,array(
             'username' => array('required' => true),
-            'password' => array('required' => true)
+            'password' => array('required' => true,
+        ),
         ));
         if($validation->passed()){
             $user = new User();
@@ -15,7 +16,7 @@ if(Input::exists()){
             if($login){
                 Redirect::to('index.php');
             }else{
-                echo '<p style="color:red;height:70px">Sorry logging in failed</p>';
+                echo '<p class="text-center pError">Username or Password is not Correct!</p>';
             }
         }else{
             foreach($validation->errors() as $error){
@@ -36,6 +37,8 @@ if(Input::exists()){
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/animate/animate.min.css">
+
 <link rel="stylesheet" href="../css/responsive-tabs/responsive-tabs.min.css">
     <title>Login to Your Account | Earn, Spend and Keep Track</title>
 
@@ -46,6 +49,13 @@ if(Input::exists()){
         .register-page{
            
             margin-top:100px;
+        }
+        .pError{
+            background:red;
+            font-size:23px;
+            color:white;
+            height:50px
+            
         }
         h3{
             text-align:center;
@@ -68,9 +78,9 @@ if(Input::exists()){
         }
         .submit{
             margin-bottom:18px;
-            width:150px;
+            width:100%;
             height:45px;
-            margin-left:100px;
+            /* margin-left:100px; */
             background-color:#28B9B5;
             color:white;
             border:0px;
@@ -104,7 +114,7 @@ transform:translateX(-46px);
              }
         .takes{margin-top:70px;font-size:20px}
         .submit{
-            width:70%;
+            /* width:70%; */
             margin-top:20px
         }
                 .container-fluid{
@@ -118,7 +128,7 @@ transform:translateX(-46px);
     margin-bottom:20px
        }
        .already{
-           margin-left:40px;
+           /* margin-left:40px; */
            font-size:18px
        }
 }
@@ -133,20 +143,29 @@ transform:translateX(-46px);
              }
         .takes{margin-top:70px}
         .submit{
-            width:150px;
             transform:translateY(-33px);
-
+            margin-top:50px;
+            border-radius:4px
         }
                 .container-fluid{
            background-image:  url(../register.jpeg);
     background-position: center;
+    background-repeat:none;
+    height:100vh
        }
        .register-page{
            background-color:white;
     border-radius: 5px;
-    height: 350px;
+    height: 400px;
     margin-bottom:20px
        }
+       .pError{
+            background:red;
+            font-size:19px;
+            color:white;
+            height:50px
+            
+        }
     
        }
         
@@ -160,7 +179,7 @@ transform:translateX(-46px);
              }
         .takes{margin-top:70px}
         .submit{
-            width:120px;
+            /* width:120px; */
             transform:translateY(-33px);
             
         }
@@ -175,7 +194,8 @@ transform:translateX(-46px);
     margin-bottom:16px
        }
        .already{
-           margin-left:10px
+      
+
        }
             }
     </style>
@@ -183,32 +203,32 @@ transform:translateX(-46px);
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
-            <img src="../register.jpeg" alt="signup" class="user-img">
+            <div class="col-md-8 ">
+            <img src="https://dev.tinkerfcu.org/wp-content/uploads/Young-woman-creating-a-budget.jpg" alt="signup" class="user-img">
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 animated zoomInLeft">
     <form action="" method="post">
         <div class="register-page">
         <h3>LOG IN</h3>
         <p class="text-center takes">Log In to Start Keeping Track.</p>
     <div class="col-md-12">
         <div class="field">
-            <input type="text" name="username" id="username" autocomplete="off" required class="form-control" placeholder="USERNAME">
+            <input type="text" name="username" id="username" autocomplete="off" required class="form-control" placeholder="USERNAME" value="<?php echo escape(Input::get('username')) ?>">
         </div>
         </div>
         <div class="col-md-12">
         <div class="field">
-            <input type="password" name="password" id="password" autocomplete="off" required class="form-control" placeholde="PASSWORD">
+            <input type="password" name="password" id="password" autocomplete="off" required class="form-control" placeholder="PASSWORD" >
         </div>
         </div>
         <div class="col-md-12">
             <div class="field">
                 <input type="checkbox" name="remember" id="remeber">   Remember Me.
-            </div>
+            </div>            <a href="register.php" class="text-center already">Back to Signup.</a>
+
 </div>
             <input type="hidden" name="token" value="<?php echo Token::generate(); ?>"><br>
             <button type="submit" class="btn btn-primary submit form-control">LOG IN</button>
-            <a href="register.php" class="text-center already">Back to Signup.</a>
 
 </div>
 </form>
