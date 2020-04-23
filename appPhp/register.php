@@ -11,6 +11,10 @@ if(Input::exists()){
             'max' => 20,
             'unique' => 'users'
         ),
+        'email' => array(
+            'required' => true,
+            'unique' => 'users'
+        ),
         'password' => array(
             'required' => true,
             'min' => 6
@@ -34,15 +38,36 @@ if(Input::exists()){
             try{
                 $user->create(array(
                     'username' => Input::get('username'),
-                    'password' => Hash::make(Input::get('password'), $salt),
+                    'email' => Input::get('email'),
+                    'password' => password_hash(Input::get('password'),PASSWORD_DEFAULT),
                     'salt' => $salt,
                     'name' => Input::get('name'),
                     'joined' => date('Y-m-d H:i:s'),
                     'group' => 1
 
                 ));
+                    $email =Input::get('email');
+             //Composer's autoload file loads all necessary files
+             require '../phpmailer/vendor/phpmailer/phpmailer/class.phpmailer.php';
+             $mail = new PHPMailer;
+            //  $mail->isSMTP(); 
+             $mail->Host = 'smtp.mailgun.org'; 
+             $mail->SMTPAuth = true; 
+             $mail->Port = 587;
+             $mail->Username = 'username.org'; 
+             $mail->Password = '****************************';
+             $mail->SMTPSecure = 'tsl';   // Enable encryption, 'ssl'
+             $mail->From = 'majornwa189@gmail.com'; 
+             $mail->FromName = 'Prince Lee'; 
+             $mail->addAddress($email, 'BOB');     
+             $mail->isHTML(true);   
+             $mail->Subject = 'OTP to Login';
+             $mail->Body    = "One Time Password for Authentication is:<br/><br/>";
+             $mail->AltBody = 'New bdy';
+             $mail_status = $mail->send();
+            //  var_dump($mail_status);
+// exit;
                 Redirect::to('index.php');
-                echo "<p class='text-center pError'>Thank you for using Budgety, please Login to Continue</p>";
             }catch(Exception $e){
         die($e->getMessage());
             }
@@ -91,6 +116,10 @@ if(Input::exists()){
           border-bottom:0px;
           border-right:0px; border-left:0px
         }
+        .form-control:focus{
+            border:1px solid #f41366;
+
+        }
         .pError{
             background:red;
             font-size:23px;
@@ -117,10 +146,14 @@ if(Input::exists()){
         .submit:hover{
             background-color:#28B9B5
         }
-        .user-img{
-          height:637px;
-          width:850px;
-transform:translateX(-46px)
+        aside{
+            height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), url("../stats-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transform:translateX(-40px);
+
         }
         .user{
             margin-top:10px;
@@ -132,7 +165,7 @@ transform:translateX(-46px)
             background: rgba(0, 0, 0, 0.9)   }
 /*** MEDIA QUERIES***/
 @media (min-width: 768px) and (max-width: 991px) {
-    .user-img{
+    aside{
                  display:none
              }
              h3{
@@ -162,7 +195,7 @@ transform:translateX(-46px)
 
         @media (max-width:480px){
 
-            .user-img{
+            aside{
                  display:none
              }
              h3{
@@ -185,6 +218,13 @@ transform:translateX(-46px)
     height: 480px;
     margin-bottom:20px
        }
+       .pError{
+            background:red;
+            font-size:18px;
+            color:white;
+            height:50px
+            
+        }
        .already{
            margin-left:10px
        }
@@ -192,7 +232,7 @@ transform:translateX(-46px)
         
 
             @media (max-width: 320px) {
-             .user-img{
+             aside{
                  display:none
              }
              h3{
@@ -226,7 +266,7 @@ transform:translateX(-46px)
  <div class="container-fluid" style="background-color:#fffafa">
      <div class="row">
          <div class="col-md-8">
-             <img src="../stats-bg.jpg" alt="signup" class="user-img">
+             <aside><div>f<div></aside>
     </div>
          <div class="col-md-4 animated zoomInLeft">
     <form action="" method="post" class="form-group">
@@ -236,6 +276,11 @@ transform:translateX(-46px)
             <div class="col-md-12">
     <div class="field">
   <input type="text" name="username" id="username" autocomplete="off" value="<?php echo escape(Input::get('username')) ?>" placeholder="USERNAME" class="form-control" required>
+    </div>
+    </div>
+    <div class="col-md-12">
+    <div class="field">
+    <input type="email" name="email" id="email" autocomplete="off" value="<?php echo escape(Input::get('email')) ?>" placeholder="EMAIL" class="form-control" required>
     </div>
     </div>
     <div class="col-md-12">

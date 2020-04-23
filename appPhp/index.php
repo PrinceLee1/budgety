@@ -9,11 +9,15 @@ if($user->isLoggedIn()){
   <?php $conn = new mysqli("localhost", "newuser", "password", "budgety");
   $searched = date('F Y');
   $status =$user->data()->username;
+  $email = $user->data()->email;
    $Sql = "SELECT * FROM income WHERE user_id='$status' ";
+   $fetchEmail = "SELECT * FROM users WHERE user_id='$status' AND email=' ";
+
     $result = mysqli_query($conn, $Sql);
      $results = mysqli_query($conn,"SELECT SUM(income_amount) AS income_amount FROM income WHERE user_id='$status' AND searched_month='$searched'"); 
   $row = mysqli_fetch_assoc($results); 
    $sum = $row['income_amount'];
+  
   $expense = mysqli_query($conn,"SELECT SUM(expense_amount) AS expense_amount FROM expenses WHERE user_id='$status' AND searched_month='$searched'");
    $expRow = mysqli_fetch_assoc($expense);$minus = $expRow['expense_amount']; 
    $calculateBudget = $sum - $minus; $percentage = ($sum * 100)/$calculateBudget;
@@ -38,7 +42,7 @@ if($user->isLoggedIn()){
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link type="text/css" rel="stylesheet" href="../style.css">
-        <link rel="stylesheet" href="../css/responsive.css">
+        <link rel="stylesheet" href="../css/responsive.css" type="text/css">
         <link rel="stylesheet" href="../css/animate/animate.min.css">
         <link rel="shortcut icon" href="../budget.png">
 
@@ -52,24 +56,42 @@ if($user->isLoggedIn()){
     background: #FF5049;
 
 }
-input[type="search"]:focus {
-    outline: none;
-    border: 1px solid #FF5049;
+input[type="search"] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+input[type=search]:focus {
+  width: 100%;
+  border: 1px solid #FF5049;
+
 }
 .alert{
     margin-top:18px;
     padding:20px
 }
+.tops a{
+    text-decoration:none
+}
     </style>
     <body>
     <div class="container-fluid tops">
         <div class="row">
-            <div class="col-lg-4 col-sm-6 col-xs-12 ">
+            <div class="col-md-4 ">
                 <h3 class="text-center text-uppercase " style="color:#FF5049">-- Welcome <?php echo $user->data()->username;?> --</h3>
-                <p class="text-center" style="color:white">Please start keeping Track of your<br> Income and Expenses. Let's help you curtail your spending.</p>
-                <h4 class="text-center" style="color:#28B9B5">-- When you are done you can <a href="logout.php" style="color:#FF5049;">Log Out Here</a> --</h4>
-               
+                <p class="text-center" style="color:white">Please start keeping Track of your<br> Income and Expenses. Let's help you save your spending and earning.</p>   
+            
 </div>
+
         <div class="col-lg-8 col-sm-6 col-xs-12 animated bounce ">
         <div class="top">
             <div class="budget">
@@ -93,13 +115,18 @@ input[type="search"]:focus {
                     <div class="right clearfix">
                         <div class="budget__expenses--value"><?php echo '₦'.$minus;?></div>
                         <div class="budget__expenses--percentage"><?php echo round($percentage).'%'?></div>
+                        
                     </div>
                 </div>
             </div>
 </div>
+
         </div>
     </div>
         </div>
+        
+        <h4 class="text-center" style="color:#28B9B5;font-size:16px">-- When you are done you can <a href="logout.php" style="color:#FF5049;" >Log Out Here</a> --</h4>
+
         <section id="hide">
         <div class="container-fluid bottom">
             <div class="add">
@@ -178,7 +205,7 @@ input[type="search"]:focus {
                               <tr>
                                 <th scope='col'>EXPENSE DESCRIPTION</th>
                                 <th scope='col'>AMOUNT</th>
-                                <th scope='col'>TIME</th>
+                                <th scope='col'>MONTH</th>
                               </tr>
                             </thead>
                             <tbody>";
@@ -283,16 +310,18 @@ input[type="search"]:focus {
 }
 }
 
+
 ?>
+
 <form action="" method="post" id="sech">
         <div class="col-md-3 ">
                 <b class="text-center">Please make sure to add<br> the year in full when searching.</b>
-                <input type="search" id="month-search" name="month-search" class="form-control" placeholder="Search budget for any month" required style="margin-bottom:20px">
-                <span>
+                <input type="search" id="month-search" name="month-search" class="form-control" placeholder="Search budget for any month" required style="margin-bottom:12px">
 <input type="submit" class="form-control btn btn-primary" name="searchMonth" value="Search">
-</span>
-</div>            
+</div>
   </form>
+
+
     <footer class="text-center" style="margin-top:120px">
         <div class="container-fluid">
             <div class="row">

@@ -11,7 +11,7 @@ if(Input::exists()){
         if($validation->passed()){
             $user = new User();
             $remember = (Input::get('remember') === 'on') ? true : false;
-            $login = $user->login(Input::get('username'), Input::get('password'), $remember);
+                $login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
             if($login){
                 Redirect::to('index.php');
@@ -68,6 +68,10 @@ if(Input::exists()){
           border-bottom:0px;
           border-right:0px; border-left:0px
         }
+        .form-control:focus{
+            border:1px solid #28B9B5;
+
+        }
         input[type="checkbox"]{
             margin-top:18px;
         }
@@ -90,11 +94,15 @@ if(Input::exists()){
         .submit:hover{
             background-color:#f41366
         }
-        .user-img{
-          height:637px;
-          width:850px;
-transform:translateX(-46px);
-            opacity:6
+        aside{
+            height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), url("https://dev.tinkerfcu.org/wp-content/uploads/Young-woman-creating-a-budget.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transform:translateX(-40px);
+
+
         }
         .user{
             margin-top:10px;
@@ -105,7 +113,7 @@ transform:translateX(-46px);
     }
 /*** MEDIA QUERIES***/
 @media (min-width: 768px) and (max-width: 991px) {
-    .user-img{
+    aside{
                  display:none
              }
              h3{
@@ -135,7 +143,7 @@ transform:translateX(-46px);
 
         @media (max-width:480px){
 
-            .user-img{
+            aside{
                  display:none
              }
              h3{
@@ -171,7 +179,7 @@ transform:translateX(-46px);
         
 
             @media (max-width: 320px) {
-             .user-img{
+                aside{
                  display:none
              }
              h3{
@@ -204,7 +212,7 @@ transform:translateX(-46px);
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 ">
-            <img src="https://dev.tinkerfcu.org/wp-content/uploads/Young-woman-creating-a-budget.jpg" alt="signup" class="user-img">
+            <aside><div>f<div></aside>
     </div>
     <div class="col-md-4 animated zoomInLeft">
     <form action="" method="post">

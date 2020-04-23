@@ -9,6 +9,7 @@ $(function () {
 });
 
 
+
 //This part handles the budget or can be called the budget controller
 var budgetController = (function(){
 

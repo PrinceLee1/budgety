@@ -70,7 +70,14 @@ class User{
         }else{
             $user = $this->find($username) ;
         if($user){
-            if($this->data()->password === Hash::make($password,$this->data()->salt)){
+            $user_id1=  $username;
+            $pas =$password;
+            $database = new Database();
+            $sql = "SELECT password FROM users WHERE username='$user_id1'";
+            $selMonth = $database->runQuery($sql);
+            $row = mysqli_fetch_assoc($selMonth);
+            $hash = $row['password'];
+            if(password_verify($pas,$hash)){
                 Session::put($this->_sessionName, $this->data()->id);
 
                 if($remember){

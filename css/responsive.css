@@ -95,13 +95,11 @@
 
 /* Extra Small Devices (Portrait Phones & Smaller Devices) */
 
-@media only screen and (max-width: 480px) {
+@media (max-width: 480px) {
     .tops{
         height: 70vh;
     }
-    .tops h4{
-        font-size: 15px;
-    }
+ 
     .budget__title {
         margin-top: 220px;
     }
@@ -130,9 +128,9 @@
     header .btn{
         background-color: #28B9B5;
         color: #f7f7f7;
-        font-size: 15px;
-        left: 35%;
-        bottom: -33px;   
+        font-size: 20px;
+        left: 40%;
+        bottom: -100px;   
              
     }
     #arrow-down{
@@ -170,7 +168,7 @@
 
 /* Extra Small Devices (Portrait Phones & Smaller Devices) */
 
-@media screen and (max-width: 320px) {
+@media (max-width: 320px) {
     .tops{
         height: 70vh;
     }

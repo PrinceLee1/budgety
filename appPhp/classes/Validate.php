@@ -46,6 +46,12 @@ class Validate{
                             }
                         break;
 
+                        case 'valid';
+                        if(!filter_var($item, FILTER_VALIDATE_EMAIL)){
+                            $this->addError("<p class='text-center  pError'>{$item} must be a valid email address</p>");
+                        }
+                    break;
+
                         case 'matches';
                         if($value != $source[$rule_value]){
                             $this->addError("<p class='text-center  pError'>{$rule_value} must match {$item}.</p>");
