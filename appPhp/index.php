@@ -20,7 +20,7 @@ if($user->isLoggedIn()){
   
   $expense = mysqli_query($conn,"SELECT SUM(expense_amount) AS expense_amount FROM expenses WHERE user_id='$status' AND searched_month='$searched'");
    $expRow = mysqli_fetch_assoc($expense);$minus = $expRow['expense_amount']; 
-   $calculateBudget = $sum - $minus; $percentage = ($sum * 100)/$calculateBudget;
+   $calculateBudget = $sum - $minus; $percentage = ($calculateBudget * 100)/$sum;
   
   
   ?>
@@ -82,13 +82,27 @@ input[type=search]:focus {
 .tops a{
     text-decoration:none
 }
+@media (max-width: 320px) {
+    .logout{
+        margin-top:55px;
+        font-size:15px !important
+    }
+        h3{
+            font-size:20px
+        }
+        table{
+         transform:translateX(-9px)
+        }
+    }
+
     </style>
     <body>
     <div class="container-fluid tops">
         <div class="row">
             <div class="col-md-4 ">
                 <h3 class="text-center text-uppercase " style="color:#FF5049">-- Welcome <?php echo $user->data()->username;?> --</h3>
-                <p class="text-center" style="color:white">Please start keeping Track of your<br> Income and Expenses. Let's help you save your spending and earning.</p>   
+                <p class="text-center" style="color:white">Please start keeping Track of your<br> Income and Expenses. Let's help you save your spending and earning.</p>  
+                <p class="text-center" style="color:#FF5049">-- You registered on <span style="color:#28B9B5"><?php echo $user->data()->joined;?></span> --</p>
             
 </div>
 
@@ -125,7 +139,7 @@ input[type=search]:focus {
     </div>
         </div>
         
-        <h4 class="text-center" style="color:#28B9B5;font-size:16px">-- When you are done you can <a href="logout.php" style="color:#FF5049;" >Log Out Here</a> --</h4>
+        <h4 class="text-center logout" style="color:#28B9B5;font-size:16px">-- When you are done you can <a href="logout.php" style="color:#FF5049;" >Log Out Here</a> --</h4>
 
         <section id="hide">
         <div class="container-fluid bottom">
@@ -175,7 +189,7 @@ input[type=search]:focus {
                         while($row = mysqli_fetch_assoc($result)) {
                             echo "<tr><td>" . $row['income_description']."</td>
                             <td>" .'₦'. $row['income_amount']."</td>
-                            <td>" . $row['month']."</td></tr>";       
+                            <td>" . $row['searched_month']."</td></tr>";       
                         }
                        
                         echo "</tbody></table>";
@@ -212,7 +226,7 @@ input[type=search]:focus {
                             while($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr><td>" . $row['expense_description']."</td>
                                           <td>" .'₦'. $row['expense_amount']."</td>
-                                          <td>" . $row['month']."</td></tr>";        
+                                          <td>" . $row['searched_month']."</td></tr>";        
                             }
                            
                             echo "</tbody></table>";
@@ -272,9 +286,9 @@ input[type=search]:focus {
             }
            
             echo "</tbody></table>";        }else{ 
-                echo '<div class="alert alert-danger alert-dismissible text-center">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <b>Sorry no records found<br> for that month!</b>  </div>';        }
+                echo "<div class='alert alert-danger alert-dismissible text-center' style='background:red'>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close' style='color:white'>&times;</a>
+          <b style='color:white'>Sorry no records found<br> for $monthSearch!</b>  </div>";        }
         if(mysqli_num_rows($selMonth1) > 0){
             echo "<table class='table table-striped table-danger col-md-6'>
             <thead>

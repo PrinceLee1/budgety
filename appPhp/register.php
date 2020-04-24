@@ -47,6 +47,7 @@ if(Input::exists()){
 
                 ));
                     $email =Input::get('email');
+                    $userName = Input::get('username');
              //Composer's autoload file loads all necessary files
              require '../phpmailer/vendor/phpmailer/phpmailer/class.phpmailer.php';
              $mail = new PHPMailer;
@@ -59,11 +60,10 @@ if(Input::exists()){
              $mail->SMTPSecure = 'tsl';   // Enable encryption, 'ssl'
              $mail->From = 'majornwa189@gmail.com'; 
              $mail->FromName = 'Prince Lee'; 
-             $mail->addAddress($email, 'BOB');     
+             $mail->addAddress($email, $userName);     
              $mail->isHTML(true);   
-             $mail->Subject = 'OTP to Login';
-             $mail->Body    = "One Time Password for Authentication is:<br/><br/>";
-             $mail->AltBody = 'New bdy';
+             $mail->Subject = 'Welcome to Budgety';
+             $mail->Body    = "Hello $userName, Thank you for signing up on Budgety we will help you save your income and expenses.";
              $mail_status = $mail->send();
             //  var_dump($mail_status);
 // exit;
