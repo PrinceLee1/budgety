@@ -11,7 +11,7 @@ if($user->isLoggedIn()){
   $status =$user->data()->username;
   $email = $user->data()->email;
    $Sql = "SELECT * FROM income WHERE user_id='$status' ";
-   $fetchEmail = "SELECT * FROM users WHERE user_id='$status' AND email=' ";
+   $fetchEmail = "SELECT * FROM users WHERE user_id='$status' AND email='$email'";
 
     $result = mysqli_query($conn, $Sql);
      $results = mysqli_query($conn,"SELECT SUM(income_amount) AS income_amount FROM income WHERE user_id='$status' AND searched_month='$searched'"); 
